@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { TextField, Button, Stack } from "@mui/material";
+import { TextField, Button, Stack, Snackbar } from "@mui/material";
 import Carlist from "./Carlist";
 
 type User ={
@@ -9,6 +9,7 @@ type User ={
 }
 
 export default function Login() {
+  const [ open, setOpen ] = useState(false);
   const [ user, setUser ] = useState<User>({
     username: '',
     password: '',
@@ -25,9 +26,14 @@ export default function Login() {
       if(jwtToken !== null) {
         sessionStorage.setItem("jwt", jwtToken);
         setAuth(true);
-      }      
+      }
     })
-    .catch(err => console.log(err));
+    .catch(() => setOpen(true));
+  }
+
+  const handleLogout = () => {
+    setAuth(false);
+    sessionStorage.setItem('jwt','');
   }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,7 +43,7 @@ export default function Login() {
   }
 
   if(isAuthenticated) {
-    return <Carlist />
+    return <Carlist logOut={handleLogout}/>
   }
 
   else{
@@ -52,6 +58,12 @@ export default function Login() {
         >
           Login
         </Button>
+        <Snackbar
+          open={open}
+          autoHideDuration={3000}
+          onClose={() => setOpen(false)}
+          message="ID / 비밀번호를 확인해주세요."
+        />        
       </Stack>
     );
   }
