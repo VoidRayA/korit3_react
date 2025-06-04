@@ -7,7 +7,6 @@ import { useLocalStorage } from './types/useLocalStorage';
 import { useTranslation } from 'react-i18next';
 import "./i18n/18n";
 
-
 const App: React.FC = () => {  
   const {t, i18n} = useTranslation();
 

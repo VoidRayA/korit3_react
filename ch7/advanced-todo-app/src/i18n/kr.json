@@ -3,5 +3,6 @@
   "add_todo_placeholder": "새 할 일 추가...",
   "add_button": "할 일 추가",
   "delete_button": "삭제",
-  "no_task": "할 일이 없습니다"
+  "no_task": "할 일이 없습니다",
+  "no_add_task": "할 일을 입력해주세요"
 }

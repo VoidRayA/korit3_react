@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Snackbar } from '@mui/material';
 
 interface TodoFormProps {
   onAddTodo: (text: string) => void;
@@ -10,7 +11,8 @@ const TodoForm: React.FC<TodoFormProps> = (props: TodoFormProps) => {
   const { t } = useTranslation();
   const { onAddTodo } = props;
 
-  const [text, setText] = useState<string>("");
+  const [ open, setOpen ] = useState(false);
+  const [ text, setText ] = useState<string>("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,6 +20,8 @@ const TodoForm: React.FC<TodoFormProps> = (props: TodoFormProps) => {
       console.log(text);
       onAddTodo(text);
       setText("");
+    } else if (text.trim() === ""){
+      setOpen(true);
     }
   };
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {      
@@ -34,6 +38,12 @@ const TodoForm: React.FC<TodoFormProps> = (props: TodoFormProps) => {
         placeholder={t('add_todo_placeholder')} 
         aria-label={t('add_todo_placeholder')} />
       <button type="submit"> {t('add_button')} </button>
+      <Snackbar 
+        open={open}
+        autoHideDuration={3000}
+        onClose={() => setOpen(false)}
+        message={t("no_add_task")}
+      />
     </form>
   );  
 };

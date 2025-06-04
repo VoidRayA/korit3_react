@@ -3,5 +3,6 @@
   "add_todo_placeholder": "新增待辦事項…",
   "add_button": "新增任務",
   "delete_button": "刪除",
-  "no_task": "目前沒有待辦事項"
+  "no_task": "目前沒有待辦事項",
+  "no_add_task": "請輸入待辦事項"
 }

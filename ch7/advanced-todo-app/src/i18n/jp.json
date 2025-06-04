@@ -3,5 +3,6 @@
   "add_todo_placeholder": "タスクリスト追加...",
   "add_button": "タスク追加",
   "delete_button": "削除",
-  "no_task": "タスクがありません"
+  "no_task": "タスクがありません",
+  "no_add_task": "タスクを入力してください"
 }
