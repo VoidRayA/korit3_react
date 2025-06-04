@@ -13,12 +13,7 @@ const App: React.FC = () => {
 
   const changeLanguage = (lang: string) => {
     i18n.changeLanguage(lang);
-  }
-  // Todos의 리스트 상태
-  // const [todos, setTodos] = useState<Todo[]>(() => {
-  //   const storedTodos = localStorage.getItem("todos");
-  //   return storedTodos ? JSON.parse(storedTodos) : [];
-  // });
+  }  
   const [todos, setTodos] = useLocalStorage<Todo[]>("todos", []);
   const addTodo = (text: string) => {
     const newTodo: Todo = {
@@ -49,21 +44,41 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <h1>{t('app_title')}</h1>
-      <div>
-        <button onClick={() => changeLanguage('en')}
-          >
-            English
-        </button>
-        <button onClick={() => changeLanguage('de')}
-          >
-            German
-        </button>
+      <h1 style={{ textAlign: 'center' }}>{t('app_title')}</h1>
+      <div style={{
+        display: 'flex',
+        gap: '5px',
+        flexWrap: 'wrap',
+        marginTop: '5px',
+        marginBottom: '5px',
+      }}>        
+      <button onClick={() => changeLanguage('kr')}
+        >
+          한글
+      </button>
+      <button onClick={() => changeLanguage('en')}
+        >
+          English
+      </button>
+      <button onClick={() => changeLanguage('jp')}
+        >
+          日本語
+      </button>
+      <button onClick={() => changeLanguage('ch')}
+        >
+          简体
+      </button>
+      <button onClick={() => changeLanguage('tw')}
+        >
+          繁體
+      </button>
+      <button onClick={() => changeLanguage('de')}
+        >
+          German
+      </button>      
       </div>
       <TodoForm onAddTodo={addTodo} />
       <TodoList todos={todos} onDeleteTodo={deleteTodo} onToggleComplete={toggleComplete}/>
-      {/* //TodoForm -> Todo를 입력하면 */}
-      {/* //TodoList -> 여기에 입력한 Todo가 나옴 */}
     </div>
   )
 };
